@@ -48,6 +48,8 @@ int main(int argc, char **argv) {
       exit(INVALID_OPTION);      
    } 
    
+   CPyInstance pyInstance;
+
    string entry;
 
    switch (option) {
@@ -80,10 +82,14 @@ inline bool checkOption(uint8_t option)
 
 void displayMenu() {
    cout << "\n\n------------------- MENU ------------------------" << endl;
-   cout << "1 - Inserir paciente" << endl;
-   cout << "2 - Buscar paciente" << endl;
-   cout << "3 - Exibir pacientes cadastrados" << endl;      
-   cout << "4 - Sair" << endl;
+   cout << "1 - Somar duas Matrizes" << endl;
+   cout << "2 - Subtrair duas Matrizes" << endl;
+   cout << "3 - Multiplicar duas Matrizes" << endl;
+   cout << "4 - Inversa de uma Matriz Quadrada" << endl;  
+   cout << "5 - Determinante de uma Matriz" << endl;  
+   cout << "6 - Transposta de uma Matriz" << endl;  
+   cout << "7 - Gráfico de uma função" << endl;        
+   cout << "8 - Sair" << endl;
    cout << "-------------------------------------------------" << endl;
    cout << ">>> ";
 }

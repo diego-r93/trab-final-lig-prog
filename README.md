@@ -1,21 +1,19 @@
 # Instruções sobre o Menu:
 
-1. Inserir paciente
-2. Buscar paciente
-3. Exibir pacientes cadastrados
-4. Sair
-
-## Tipos de pacientes (Opção 1 do MENU):
-
-1. scheduled
-2. covid
-3. emergency
+1. Somar duas Matrizes
+2. Subtrair duas Matrizes
+3. Multiplicar duas Matrizes
+4. Inversa de uma Matriz Quadrada
+5. Determinante de uma Matriz
+6. Transposta de uma Matriz
+7. Gráfico de uma função
+8. Sair
 
 ## Compilação:
 
-> Para compilar digite ```make patients``` ou ```make all```. 
+> Para compilar digite ```make calculadora_matrizes``` ou ```make all```. 
 
-> Para executar digite ```./patients```
+> Para executar digite ```./calculadora_matrizes (OPTION)``` ou ```./calculadora_matrizes``` para usar o MENU
 
 > Para remover os arquivos objetos e o executável digite ```make clean```.
 

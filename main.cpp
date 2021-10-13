@@ -34,9 +34,9 @@ bool menuIsDefined = false;
       exit(INVALID_ARGUMENTS_SIZE);
    }   
 
-   if (!menuIsDefined) {
+   if (menuIsDefined == false) {
       string input(argv[1]);   
-      uint16_t option = atoi(argv[1]);
+      uint8_t option = atoi(argv[1]);
 
       if (input.length() > 1) {
          cout << "Invalid argument size." << endl;
@@ -54,15 +54,13 @@ bool menuIsDefined = false;
          cout << "Read the file README to understand the menu." << endl;
          exit(INVALID_OPTION);      
       } 
-   }
-
-   
+   }   
    
    CPyInstance pyInstance;
 
    if (menuIsDefined) {
       string entry;
-      uint16_t option;
+      uint8_t option;
 
       do {
          displayMenu();
@@ -70,7 +68,7 @@ bool menuIsDefined = false;
          string input(entry);
 
          if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {         
-            option = 5;      
+            option = 10; // Qualquer número fora do intervalo    
          }
          else {
             option = stoi(entry);
@@ -100,6 +98,12 @@ bool menuIsDefined = false;
 
             case 8:
                break;
+
+            default:
+            cout << "Invalid option." << endl;
+            cout << "Valid options: [1 ... 8]" << endl;
+            cout << "Read the file README to understand the menu." << endl;
+            cin.ignore();         
          } 
       } while (option != 8);   
    }   

@@ -1,6 +1,6 @@
 // Trabalho 3 de Linguagens de Programação
 // Autores: Diego Rodrigues da Silva
-//          Raiano
+//          Raiano Raiano Martins
 // Compilador Utilizado: g++ 9.3.0
 // GNU Make 4.2.1
 // Sistema Operacional: Ubuntu 20.04.1 LTS

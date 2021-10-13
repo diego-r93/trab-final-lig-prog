@@ -1,5 +1,5 @@
-#ifndef PYHELPER_HPP
-#define PYHELPER_HPP
+#ifndef PYCLASS_H
+#define PYCLASS_H
 
 #include <Python.h>
 

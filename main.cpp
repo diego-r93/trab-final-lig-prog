@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
    }   
    else if (!checkOption(option)) {
       cout << "Invalid option." << endl;
-      cout << "Valid options: 1, 2, 3, 4, 5, 6" << endl;
+      cout << "Valid options: 1, 2, 3, 4, 5, 6, 7, 8" << endl;
       cout << "Read the file README to understand the menu." << endl;
       exit(INVALID_OPTION);      
    } 
@@ -71,6 +71,12 @@ int main(int argc, char **argv) {
 
          case 6:
             break;
+
+         case 7:
+            break;
+
+         case 8:
+            break;
    }
 
    return OKAY;
@@ -78,7 +84,7 @@ int main(int argc, char **argv) {
 
 inline bool checkOption(uint8_t option)
 {
-   return (option >= 1 && option <= 6) ? true: false;
+   return (option >= 1 && option <= 8) ? true: false;
 }
 
 void displayMenu() {

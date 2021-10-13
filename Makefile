@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 TARGET = calculadora_matrizes
+TEST = test
 
 CXX = g++
 
@@ -25,11 +26,15 @@ CXXFLAGS = -Wall -std=c++17
 endif
 
 OBJS = main.o
+TEST_OBJS = test.o
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $< $(INCLUDE)
 
 $(TARGET): $(OBJS)
+	$(LD) $(LDFLAGS) -o $@ $^ $(INCLUDE)
+
+$(TEST): $(OBJS)
 	$(LD) $(LDFLAGS) -o $@ $^ $(INCLUDE)
 
 .PHONY: all clean
@@ -38,3 +43,8 @@ all: $(TARGET)
 
 clean:
 	$(RM) *.o $(TARGET)
+
+test: $(TEST)
+
+clean-test:
+	$(RM) *.o $(TEST)

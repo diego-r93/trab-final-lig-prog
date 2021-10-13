@@ -23,61 +23,86 @@ void displayMenu();
 bool checkOption(uint8_t);
 
 int main(int argc, char **argv) {
-   if (argc != ARGUMENTS_SIZE) {
+bool menuIsDefined = false;
+
+   if (argc == NO_ARGUMENTS) {
+      menuIsDefined = true;
+   }
+   else if (argc != ARGUMENTS_SIZE) {
       cout << "Invalid number of arguments." << endl;
       cout << "Use: " << argv[0] << " <OPTION>" << endl;
       exit(INVALID_ARGUMENTS_SIZE);
-   }
-
-   string input(argv[1]);   
-   uint16_t option = atoi(argv[1]);
-
-   if (input.length() > 1) {
-      cout << "Invalid argument size." << endl;
-      cout << "Use: " << argv[0] << " <DIGIT>" << endl;
-      exit(INVALID_ARGUMENT_SIZE);
-   }
-   else if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {
-      cout << "Invalid argument type." << endl;
-      cout << "Use: " << argv[0] << " <DIGIT>" << endl;
-      exit(INVALID_ARGUMENT); 
    }   
-   else if (!checkOption(option)) {
-      cout << "Invalid option." << endl;
-      cout << "Valid options: 1, 2, 3, 4, 5, 6, 7, 8" << endl;
-      cout << "Read the file README to understand the menu." << endl;
-      exit(INVALID_OPTION);      
-   } 
+
+   if (!menuIsDefined) {
+      string input(argv[1]);   
+      uint16_t option = atoi(argv[1]);
+
+      if (input.length() > 1) {
+         cout << "Invalid argument size." << endl;
+         cout << "Use: " << argv[0] << " <DIGIT>" << endl;
+         exit(INVALID_ARGUMENT_SIZE);
+      }
+      else if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {
+         cout << "Invalid argument type." << endl;
+         cout << "Use: " << argv[0] << " <DIGIT>" << endl;
+         exit(INVALID_ARGUMENT); 
+      }   
+      else if (!checkOption(option)) {
+         cout << "Invalid option." << endl;
+         cout << "Valid options: 1, 2, 3, 4, 5, 6, 7, 8" << endl;
+         cout << "Read the file README to understand the menu." << endl;
+         exit(INVALID_OPTION);      
+      } 
+   }
+
+   
    
    CPyInstance pyInstance;
 
-   string entry;
+   if (menuIsDefined) {
+      string entry;
+      uint16_t option;
 
-   switch (option) {
-         case 1:
-            break;
+      do {
+         displayMenu();
+         cin >> entry;
+         string input(entry);
 
-         case 2:            
-            break;
+         if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {         
+            option = 5;      
+         }
+         else {
+            option = stoi(entry);
+         }
 
-         case 3:
-            break;
+         switch (option) {
+            case 1:
+               break;
 
-         case 4:
-            break;
+            case 2:            
+               break;
 
-         case 5:
-            break;
+            case 3:
+               break;
 
-         case 6:
-            break;
+            case 4:
+               break;
 
-         case 7:
-            break;
+            case 5:
+               break;
 
-         case 8:
-            break;
-   }
+            case 6:
+               break;
+
+            case 7:
+               break;
+
+            case 8:
+               break;
+         } 
+      } while (option != 8);   
+   }   
 
    return OKAY;
 }

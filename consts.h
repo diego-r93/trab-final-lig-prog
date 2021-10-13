@@ -1,4 +1,5 @@
 #define ARGUMENTS_SIZE           2
+#define NO_ARGUMENTS             1
 #define INVALID_ARGUMENTS_SIZE   1
 #define INVALID_ARGUMENT         2
 #define INVALID_ARGUMENT_SIZE    3   

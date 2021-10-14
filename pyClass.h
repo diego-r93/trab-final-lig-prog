@@ -16,16 +16,15 @@ class CPyInstance
 
 class PyArray : public CPyInstance {
    friend ostream &operator<<(ostream &, PyArray &);
-
+   friend PyArray operator+(PyArray &, PyArray &);
+   
    public:
-      PyArray();
+      PyArray(string);
 
-      PyArray operator+(const PyArray &);
-      PyArray operator-(const PyArray &);
-      PyArray operator*(const PyArray &);
+      void setFileName(string);
 
    private:
-      string pythonScript;
+      string fileName;
 };
 
 #endif

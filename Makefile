@@ -25,7 +25,7 @@ ifeq ($(dialect), C++17)
 CXXFLAGS = -Wall -std=c++17
 endif
 
-OBJS = main.o
+OBJS = main.o pyClass.o
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $< $(INCLUDE)

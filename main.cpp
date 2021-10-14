@@ -20,14 +20,14 @@ using namespace std;
 void displayMenu();
 
 int main(int argc, char **argv) {
-   PyArray pyInstance;
+   PyArray *firstArray, *secondArray;
 
    FILE *fp;
    string directory = "python-scripts/";
-   string filename = "matriz.py";
+   string filename = "operations.py";
    string path = directory + filename;
 
-   string entry;
+   string entry, firstArrayFile, secondArrayFile;
    uint8_t option;
 
    do {
@@ -46,6 +46,18 @@ int main(int argc, char **argv) {
 
       switch (option) {
          case 1:
+            cout << "Digite o nome do arquivo da primeira matriz: " << endl;
+            cout << ">>> ";
+            cin.ignore();
+            cin >> firstArrayFile;
+            firstArray = new PyArray(firstArrayFile);
+            cout << "Digite o nome do arquivo da segunda matriz: " << endl;
+            cout << ">>> ";
+            cin.ignore();
+            cin >> secondArrayFile;
+            secondArray = new PyArray(secondArrayFile);
+            fp = _Py_fopen("add.py", "r");
+            PyRun_SimpleFile(fp, "add.py");
             break;
 
          case 2:

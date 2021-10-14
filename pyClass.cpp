@@ -13,22 +13,18 @@ CPyInstance::~CPyInstance() {
    Py_Finalize();
 }
 
-ostream &operator<<(ostream &output, PyArray &patient) {
-   return;
+ostream &operator<<(ostream &output, PyArray &array) {
+   return output;
 }
 
-PyArray::PyArray() {
-
+PyArray::PyArray(string fileName) {
+   setFileName(fileName);
 }
 
-PyArray::PyArray operator+(const PyArray &) {
-
+PyArray operator+(PyArray &firstArray, PyArray &secondArray) {
+   return firstArray;
 }
 
-PyArray::PyArray operator-(const PyArray &) {
-
-}
-
-PyArray::PyArray operator*(const PyArray &) {
-
+void PyArray::setFileName(string fileName) {
+   this->fileName = fileName;
 }

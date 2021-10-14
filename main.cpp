@@ -20,13 +20,11 @@ using namespace std;
 
 void displayMenu();
 
-bool checkOption(uint8_t);
-
 int main(int argc, char **argv) {
    CPyInstance pyInstance;
 
    FILE *fp;
-   string filename = "matriz.py";
+   string filename = "matriz.py"; // Script Python
 
    string entry;
    uint8_t option;
@@ -37,7 +35,10 @@ int main(int argc, char **argv) {
       string input(entry);
 
       if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {
-         option = 10;  // Qualquer número fora do intervalo
+         cout << "Invalid option." << endl;
+         cout << "Valid options: [1 ... 8]" << endl;
+         cout << "Read the file README to understand the menu." << endl;
+         continue;
       } else {
          option = stoi(entry);
       }
@@ -78,10 +79,6 @@ int main(int argc, char **argv) {
    } while (option != 8);
 
    return OKAY;
-}
-
-inline bool checkOption(uint8_t option) {
-   return (option >= 1 && option <= 8) ? true : false;
 }
 
 void displayMenu() {

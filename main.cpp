@@ -81,6 +81,20 @@ int main() {
             break;
 
          case 3:
+            py_argv[0] = (char *)"mult.py";
+
+            cout << "Digite o nome do arquivo da primeira matriz: " << endl;
+            cout << ">>> ";
+            cin >> firstEntry;
+            py_argv[1] = (char *)firstEntry.c_str();
+
+            cout << "Digite o nome do arquivo da segunda matriz: " << endl;
+            cout << ">>> ";
+            cin.ignore();
+            cin >> secondEntry;
+            py_argv[2] = (char *)secondEntry.c_str();
+
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
             break;
 
          case 4:

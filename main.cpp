@@ -20,10 +20,12 @@ using namespace std;
 void displayMenu();
 
 int main(int argc, char **argv) {
-   CPyInstance pyInstance;
+   PyArray pyInstance;
 
    FILE *fp;
-   string filename = "matriz.py"; // Script Python
+   string directory = "python-scripts/";
+   string filename = "matriz.py";
+   string path = directory + filename;
 
    string entry;
    uint8_t option;
@@ -55,9 +57,9 @@ int main(int argc, char **argv) {
          case 4:
             break;
 
-         case 5:
-            fp = _Py_fopen(filename.c_str(), "r");
-            PyRun_SimpleFile(fp, filename.c_str());
+         case 5:         
+            fp = _Py_fopen(path.c_str(), "r");
+            PyRun_SimpleFile(fp, path.c_str());
             break;
 
          case 6:

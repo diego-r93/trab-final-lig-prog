@@ -3,27 +3,29 @@
 
 #include <Python.h>
 
+using std::ostream;
 using std::string;
 
 class CPyInstance
 {
-public:
-   CPyInstance()
-   {
-      Py_Initialize();
-   }
+   public:
+      CPyInstance();
 
-   ~CPyInstance()
-   {
-      Py_Finalize();
-   }
+      ~CPyInstance();
 };
 
-class CPyObject : public CPyInstance {
+class PyArray : public CPyInstance {
+   friend ostream &operator<<(ostream &, PyArray &);
+
    public:
+      PyArray();
+
+      PyArray operator+(const PyArray &);
+      PyArray operator-(const PyArray &);
+      PyArray operator*(const PyArray &);
 
    private:
-      string fileName;
+      string pythonScript;
 };
 
 #endif

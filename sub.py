@@ -2,11 +2,11 @@
 
 import sys
 import numpy as np
-from operations import add
+from operations import sub
 
 array_1 = np.loadtxt(sys.argv[1], dtype=float, delimiter=' ')
 array_2 = np.loadtxt(sys.argv[2], dtype=float, delimiter=' ')
 
-result = add(array_1, array_2)
+result = sub(array_1, array_2)
 
 np.savetxt("result.txt", result, fmt='%.2f', delimiter=' ', newline='\n')

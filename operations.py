@@ -1,13 +1,5 @@
 import numpy as np
 
-try:
-    array_1 = np.loadtxt("matriz1.txt", dtype=float, delimiter=' ')
-    array_2 = np.loadtxt("matriz2.txt", dtype=float, delimiter=' ')
-    array_3 = np.loadtxt("matriz3.txt", dtype=float, delimiter=' ')
-    array_4 = np.loadtxt("matriz4.txt", dtype=float, delimiter=' ')
-except:
-    print("Error opening files.")
-
 
 def add(array_1, array_2):
     return array_1 + array_2
@@ -34,6 +26,14 @@ def transp(array):
 
 
 if __name__ == '__main__':
+    try:
+        array_1 = np.loadtxt("matriz1.txt", dtype=float, delimiter=' ')
+        array_2 = np.loadtxt("matriz2.txt", dtype=float, delimiter=' ')
+        array_3 = np.loadtxt("matriz3.txt", dtype=float, delimiter=' ')
+        array_4 = np.loadtxt("matriz4.txt", dtype=float, delimiter=' ')
+    except:
+        print("Error opening files.")
+
     # Soma de 2 com 3
     print("Soma de 2 com 3:")
     print(add(array_2, array_3))

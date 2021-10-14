@@ -26,6 +26,7 @@ CXXFLAGS = -Wall -std=c++17
 endif
 
 OBJS = main.o pyClass.o
+# OBJS = test.o
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $< $(INCLUDE)

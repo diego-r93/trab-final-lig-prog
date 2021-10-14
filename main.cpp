@@ -18,17 +18,18 @@
 using namespace std;
 
 void displayMenu();
+static void runPyScriptArgs(const char *, int, char *[]);
 
-int main(int argc, char **argv) {
-   PyArray *firstArray, *secondArray;
-
-   FILE *fp;
-   string directory = "python-scripts/";
-   string filename = "operations.py";
-   string path = directory + filename;
-
-   string entry, firstArrayFile, secondArrayFile;
+int main() {
+   string entry;
    uint8_t option;
+
+   int py_argc = 3;
+   char *py_argv[py_argc];
+
+   string firstEntry, secondEntry;
+
+   CPyInstance CPyObject;
 
    do {
       displayMenu();
@@ -46,21 +47,37 @@ int main(int argc, char **argv) {
 
       switch (option) {
          case 1:
+            py_argv[0] = (char *)"add.py";
+
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
             cout << ">>> ";
-            cin.ignore();
-            cin >> firstArrayFile;
-            firstArray = new PyArray(firstArrayFile);
+            cin >> firstEntry;
+            py_argv[1] = (char *)firstEntry.c_str();
+
             cout << "Digite o nome do arquivo da segunda matriz: " << endl;
             cout << ">>> ";
             cin.ignore();
-            cin >> secondArrayFile;
-            secondArray = new PyArray(secondArrayFile);
-            fp = _Py_fopen("add.py", "r");
-            PyRun_SimpleFile(fp, "add.py");
+            cin >> secondEntry;
+            py_argv[2] = (char *)secondEntry.c_str();
+
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
             break;
 
          case 2:
+            py_argv[0] = (char *)"sub.py";
+
+            cout << "Digite o nome do arquivo da primeira matriz: " << endl;
+            cout << ">>> ";
+            cin >> firstEntry;
+            py_argv[1] = (char *)firstEntry.c_str();
+
+            cout << "Digite o nome do arquivo da segunda matriz: " << endl;
+            cout << ">>> ";
+            cin.ignore();
+            cin >> secondEntry;
+            py_argv[2] = (char *)secondEntry.c_str();
+
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
             break;
 
          case 3:
@@ -69,9 +86,7 @@ int main(int argc, char **argv) {
          case 4:
             break;
 
-         case 5:         
-            fp = _Py_fopen(path.c_str(), "r");
-            PyRun_SimpleFile(fp, path.c_str());
+         case 5:
             break;
 
          case 6:
@@ -106,4 +121,29 @@ void displayMenu() {
    cout << "8 - Sair" << endl;
    cout << "-------------------------------------------------" << endl;
    cout << ">>> ";
+}
+
+static void runPyScriptArgs(const char *file, int argc, char *argv[]) {   
+   FILE *fp;   
+   wchar_t **wargv = new wchar_t *[argc];
+
+   for (int i = 0; i < argc; i++) {
+      wargv[i] = Py_DecodeLocale(argv[i], nullptr);
+      if (wargv[i] == nullptr) {
+         return;
+      }
+   }
+   Py_SetProgramName(wargv[0]);
+
+   PySys_SetArgv(argc, wargv);
+   fp = _Py_fopen(file, "r");
+   PyRun_SimpleFile(fp, file);
+
+   for (int i = 0; i < argc; i++) {
+      PyMem_RawFree(wargv[i]);
+      wargv[i] = nullptr;
+   }
+
+   delete[] wargv;
+   wargv = nullptr;   
 }

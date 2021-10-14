@@ -7,7 +7,6 @@
 // Sistema Operacional: Ubuntu 20.04.1 LTS
 
 #include <algorithm>
-#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <string>

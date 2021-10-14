@@ -1,20 +1,20 @@
 // Trabalho Final de Linguagens de Programação
 // Autores: Diego Rodrigues da Silva
 //          Raiano Raiano Martins
-// Compiladores Utilizados: g++ 9.3.0 
+// Compiladores Utilizados: g++ 9.3.0
 //                          clang++ 10.0.0
 // GNU Make 4.2.1
 // Sistema Operacional: Ubuntu 20.04.1 LTS
 
-#include <iostream>
 #include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <cstdlib>
 
-#include "pyClass.h"
 #include "consts.h"
+#include "pyClass.h"
 
 using namespace std;
 
@@ -23,97 +23,65 @@ void displayMenu();
 bool checkOption(uint8_t);
 
 int main(int argc, char **argv) {
-bool menuIsDefined = false;
-
-   if (argc == NO_ARGUMENTS) {
-      menuIsDefined = true;
-   }
-   else if (argc != ARGUMENTS_SIZE) {
-      cout << "Invalid number of arguments." << endl;
-      cout << "Use: " << argv[0] << " <OPTION>" << endl;
-      exit(INVALID_ARGUMENTS_SIZE);
-   }   
-
-   if (menuIsDefined == false) {
-      string input(argv[1]);   
-      uint8_t option = atoi(argv[1]);
-
-      if (input.length() > 1) {
-         cout << "Invalid argument size." << endl;
-         cout << "Use: " << argv[0] << " <DIGIT>" << endl;
-         exit(INVALID_ARGUMENT_SIZE);
-      }
-      else if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {
-         cout << "Invalid argument type." << endl;
-         cout << "Use: " << argv[0] << " <DIGIT>" << endl;
-         exit(INVALID_ARGUMENT); 
-      }   
-      else if (!checkOption(option)) {
-         cout << "Invalid option." << endl;
-         cout << "Valid options: 1, 2, 3, 4, 5, 6, 7, 8" << endl;
-         cout << "Read the file README to understand the menu." << endl;
-         exit(INVALID_OPTION);      
-      } 
-   }   
-   
    CPyInstance pyInstance;
 
-   if (menuIsDefined) {
-      string entry;
-      uint8_t option;
+   FILE *fp;
+   string filename = "matriz.py";
 
-      do {
-         displayMenu();
-         cin >> entry;
-         string input(entry);
+   string entry;
+   uint8_t option;
 
-         if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {         
-            option = 10; // Qualquer número fora do intervalo    
-         }
-         else {
-            option = stoi(entry);
-         }
+   do {
+      displayMenu();
+      cin >> entry;
+      string input(entry);
 
-         switch (option) {
-            case 1:
-               break;
+      if (any_of(input.begin(), input.end(), [](char ch) { return !isdigit(ch); })) {
+         option = 10;  // Qualquer número fora do intervalo
+      } else {
+         option = stoi(entry);
+      }
 
-            case 2:            
-               break;
+      switch (option) {
+         case 1:
+            break;
 
-            case 3:
-               break;
+         case 2:
+            break;
 
-            case 4:
-               break;
+         case 3:
+            break;
 
-            case 5:
-               break;
+         case 4:
+            break;
 
-            case 6:
-               break;
+         case 5:
+            fp = _Py_fopen(filename.c_str(), "r");
+            PyRun_SimpleFile(fp, filename.c_str());
+            break;
 
-            case 7:
-               break;
+         case 6:
+            break;
 
-            case 8:
-               break;
+         case 7:
+            break;
 
-            default:
+         case 8:
+            break;
+
+         default:
             cout << "Invalid option." << endl;
             cout << "Valid options: [1 ... 8]" << endl;
             cout << "Read the file README to understand the menu." << endl;
-            cin.ignore();         
-         } 
-      } while (option != 8);   
-   }   
+            cin.ignore();
+      }
+   } while (option != 8);
 
    return OKAY;
 }
 
-inline bool checkOption(uint8_t option)
-{
-   return (option >= 1 && option <= 8) ? true: false;
+inline bool checkOption(uint8_t option) {
+   return (option >= 1 && option <= 8) ? true : false;
 }
 
 void displayMenu() {
@@ -121,10 +89,10 @@ void displayMenu() {
    cout << "1 - Somar duas Matrizes" << endl;
    cout << "2 - Subtrair duas Matrizes" << endl;
    cout << "3 - Multiplicar duas Matrizes" << endl;
-   cout << "4 - Inversa de uma Matriz Quadrada" << endl;  
-   cout << "5 - Determinante de uma Matriz" << endl;  
-   cout << "6 - Transposta de uma Matriz" << endl;  
-   cout << "7 - Gráfico de uma função" << endl;        
+   cout << "4 - Inversa de uma Matriz Quadrada" << endl;
+   cout << "5 - Determinante de uma Matriz Quadrada" << endl;
+   cout << "6 - Transposta de uma Matriz" << endl;
+   cout << "7 - Gráfico de uma função" << endl;
    cout << "8 - Sair" << endl;
    cout << "-------------------------------------------------" << endl;
    cout << ">>> ";

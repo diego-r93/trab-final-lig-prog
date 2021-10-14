@@ -1,10 +1,12 @@
-#include <stdio.h>
+#include <iostream>
 #include <Python.h>
+
+using std::string;
 
 int main()
 {
-	char filename[] = "matriz.py";
-	FILE* fp;
+	const char *filename = "matriz.py";
+	FILE *fp;
 
 	Py_Initialize();
 

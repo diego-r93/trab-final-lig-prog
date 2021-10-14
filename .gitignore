@@ -20,7 +20,7 @@
 ![Mm]akefile
 
 # VSCode files
-.vscode
+.vscode/settings.json
 
 # .zip files
 *.zip

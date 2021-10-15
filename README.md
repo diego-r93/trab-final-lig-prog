@@ -1,4 +1,4 @@
-# Instruções sobre o Menu:
+# Opções do Menu:
 
 1. Somar duas Matrizes
 2. Subtrair duas Matrizes
@@ -13,7 +13,7 @@
 
 > Para compilar digite ```make calculadora_matrizes``` ou ```make all```. 
 
-> Para executar digite ```./calculadora_matrizes (OPTION)``` ou ```./calculadora_matrizes``` para usar o MENU
+> Para executar digite ```./calculadora_matrizes```.
 
 > Para remover os arquivos objetos e o executável digite ```make clean```.
 

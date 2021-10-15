@@ -6,6 +6,9 @@
 using std::ostream;
 using std::string;
 
+void displayMenu();
+void runPyScriptArgs(const char *, int, char *[]);
+
 class CPyInstance
 {
    public:

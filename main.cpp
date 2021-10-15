@@ -95,7 +95,7 @@ int main() {
             runPyScriptArgs(py_argv[0], py_argc, py_argv);
 
             resultado = new PyArray("result.txt");
-            cout << "Resultado da subtracao:" << endl;
+            cout << "Resultado da subtração:" << endl;
             printVector(resultado->getMatriz());
             break;
 
@@ -105,15 +105,25 @@ int main() {
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
             cout << ">>> ";
             cin >> firstEntry;
-            py_argv[1] = (char *)firstEntry.c_str();
+            matriz_1 = new PyArray(firstEntry);
+            py_argv[1] = (char *)matriz_1->getFilename().c_str();
+            cout << "Primeira Matriz:" << endl;
+            printVector(matriz_1->getMatriz());
 
             cout << "Digite o nome do arquivo da segunda matriz: " << endl;
             cout << ">>> ";
             cin.ignore();
             cin >> secondEntry;
-            py_argv[2] = (char *)secondEntry.c_str();
+            matriz_2 = new PyArray(secondEntry);
+            py_argv[2] = (char *)matriz_2->getFilename().c_str();
+            cout << "Segunda Matriz:" << endl;
+            printVector(matriz_2->getMatriz());
 
             runPyScriptArgs(py_argv[0], py_argc, py_argv);
+
+            resultado = new PyArray("result.txt");
+            cout << "Resultado da multiplicação:" << endl;
+            printVector(resultado->getMatriz());
             break;
 
          case 4:
@@ -129,6 +139,7 @@ int main() {
             break;
 
          case 8:
+            cout << "Finalizando o programa." << endl;
             break;
 
          default:

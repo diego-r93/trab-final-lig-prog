@@ -18,7 +18,7 @@ def inv(array):
 
 
 def det(array):
-    np.linalg.det(array)
+    return np.linalg.det(array)
 
 
 def transp(array):
@@ -31,6 +31,7 @@ if __name__ == '__main__':
         array_2 = np.loadtxt("matriz2.txt", dtype=float, delimiter=' ')
         array_3 = np.loadtxt("matriz3.txt", dtype=float, delimiter=' ')
         array_4 = np.loadtxt("matriz4.txt", dtype=float, delimiter=' ')
+        array_5 = np.loadtxt("matriz5.txt", dtype=float, delimiter=' ')
     except:
         print("Error opening files.")
 
@@ -58,7 +59,7 @@ if __name__ == '__main__':
     # Determinante da Matriz 4
     z = np.linalg.det(array_4)
     print("Determinante da Matriz 4")
-    print(det(array_4))
+    print(det(array_5))
     print()
 
     # Transposta de 2

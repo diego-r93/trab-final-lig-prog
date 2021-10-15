@@ -127,12 +127,60 @@ int main() {
             break;
 
          case 4:
+            py_argv[0] = (char *)"inv.py";
+
+            cout << "Digite o nome do arquivo da matriz: " << endl;
+            cout << ">>> ";
+            cin >> firstEntry;
+            matriz_1 = new PyArray(firstEntry);
+            py_argv[1] = (char *)matriz_1->getFilename().c_str();
+            cout << "Matriz Escolhida:" << endl;
+            printVector(matriz_1->getMatriz());           
+
+            py_argv[2] = (char *)" ";
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
+
+            resultado = new PyArray("result.txt");
+            cout << "Matriz inversa:" << endl;
+            printVector(resultado->getMatriz());
             break;
 
          case 5:
+            py_argv[0] = (char *)"det.py";
+
+            cout << "Digite o nome do arquivo da matriz: " << endl;
+            cout << ">>> ";
+            cin >> firstEntry;
+            matriz_1 = new PyArray(firstEntry);
+            py_argv[1] = (char *)matriz_1->getFilename().c_str();
+            cout << "Matriz Escolhida:" << endl;
+            printVector(matriz_1->getMatriz());           
+
+            py_argv[2] = (char *)" ";
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
+
+            resultado = new PyArray("result.txt");
+            cout << "Determinante:" << endl;
+            printVector(resultado->getMatriz());
             break;
 
          case 6:
+            py_argv[0] = (char *)"transp.py";
+
+            cout << "Digite o nome do arquivo da matriz: " << endl;
+            cout << ">>> ";
+            cin >> firstEntry;
+            matriz_1 = new PyArray(firstEntry);
+            py_argv[1] = (char *)matriz_1->getFilename().c_str();
+            cout << "Matriz Escolhida:" << endl;
+            printVector(matriz_1->getMatriz());           
+
+            py_argv[2] = (char *)" ";
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
+
+            resultado = new PyArray("result.txt");
+            cout << "Matriz Transposta:" << endl;
+            printVector(resultado->getMatriz());
             break;
 
          case 7:
@@ -151,15 +199,4 @@ int main() {
    } while (option != 8);
 
    return OKAY;
-}
-
-template <class T>
-void printVector(vector<vector<T>> const &matrix) {
-   for (vector<T> row : matrix) {
-      for (T val : row) {
-         cout << val << " ";
-      }
-      cout << endl;
-   }
-   cout << endl;
 }

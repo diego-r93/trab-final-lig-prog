@@ -29,6 +29,7 @@ int main() {
    string firstEntry, secondEntry;
 
    PyArray *matriz_1, *matriz_2, *resultado;
+   PyFunction *function;
 
    do {
       displayMenu();
@@ -184,6 +185,18 @@ int main() {
             break;
 
          case 7:
+            py_argv[0] = (char *)"print-function.py";
+
+            cout << "Digite o nome do arquivo da função: " << endl;
+            cout << ">>> ";
+            cin >> firstEntry;
+            function = new PyFunction(firstEntry);
+            py_argv[1] = (char *)function->getFilename().c_str();
+            cout << "Função Escolhida:" << endl;
+            printFunction(function->getFunction());           
+
+            py_argv[2] = (char *)" ";
+            runPyScriptArgs(py_argv[0], py_argc, py_argv);
             break;
 
          case 8:

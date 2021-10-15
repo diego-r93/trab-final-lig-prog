@@ -4,9 +4,15 @@ import sys
 import numpy as np
 from operations import sub
 
-array_1 = np.loadtxt(sys.argv[1], dtype=float, delimiter=' ')
-array_2 = np.loadtxt(sys.argv[2], dtype=float, delimiter=' ')
+try:
 
-result = sub(array_1, array_2)
+    array_1 = np.loadtxt(sys.argv[1], dtype=float, delimiter=' ')
+    array_2 = np.loadtxt(sys.argv[2], dtype=float, delimiter=' ')
 
-np.savetxt("result.txt", result, fmt='%.2f', delimiter=' ', newline='\n')
+    result = sub(array_1, array_2)
+
+    np.savetxt("result.txt", result, fmt='%.2f', delimiter=' ', newline='\n')
+
+except:
+    print(
+        f"Não foi possível encontrar os arquivos {sys.argv[1]} e {sys.argv[2]}")

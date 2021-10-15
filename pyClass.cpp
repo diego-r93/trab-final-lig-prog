@@ -1,9 +1,9 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
-#include "consts.h"
 #include "pyClass.h"
+#include "consts.h"
 
 using namespace std;
 
@@ -61,8 +61,55 @@ vector<vector<double>> PyArray::getMatriz() {
    return matriz;
 }
 
-void runPyScriptArgs(const char *file, int argc, char *argv[]) {   
-   FILE *fp;   
+PyFunction::PyFunction(string fileName) {
+   setFileName(fileName);
+   setFunction(fileName);
+}
+
+void PyFunction::setFileName(string fileName) {
+   this->fileName = fileName;
+}
+
+string PyFunction::getFilename() {
+   return fileName;
+}
+
+int PyFunction::setFunction(string) {
+   fstream myFile;
+   string line, colname;
+
+   myFile.open(fileName);
+
+   if (!myFile.is_open()) {
+      cout << "O arquivo escolhido não existe." << endl;
+      return ERROR_OPENING_FILE;
+   }
+
+   if (myFile.good()) {
+      while (getline(myFile, line)) {
+         stringstream myStream(line);
+         pair<double, double> row;
+
+         getline(myStream, colname, ',');
+         row.first = stod(colname);
+         getline(myStream, colname, ',');
+         row.second = stod(colname);
+
+         function.push_back(row);
+         row = {};
+      }
+   }
+
+   myFile.close();
+   return OKAY;
+}
+
+vector<pair<double, double>> PyFunction::getFunction() {
+   return function;
+}
+
+void runPyScriptArgs(const char *file, int argc, char *argv[]) {
+   FILE *fp;
    wchar_t **wargv = new wchar_t *[argc];
 
    for (int i = 0; i < argc; i++) {
@@ -83,5 +130,5 @@ void runPyScriptArgs(const char *file, int argc, char *argv[]) {
    }
 
    delete[] wargv;
-   wargv = nullptr;   
+   wargv = nullptr;
 }

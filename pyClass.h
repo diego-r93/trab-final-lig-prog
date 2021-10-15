@@ -3,6 +3,7 @@
 
 #include <Python.h>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -31,6 +32,23 @@ class PyArray : public CPyInstance {
       vector<vector<double>> matriz;
 
       int setMatriz(string);
+};
+
+class PyFunction : public CPyInstance {
+   public:
+      PyFunction(string);
+
+      void setFileName(string);
+      string getFilename();
+
+      vector<pair<double, double>> getFunction();
+
+   private:
+      string fileName;
+
+      vector<pair<double, double>> function;
+
+      int setFunction(string);
 };
 
 #endif

@@ -18,4 +18,12 @@ void printVector(vector<vector<T>> const &matrix) {
    cout << endl;
 }
 
+template <class T>
+void printFunction(vector<pair<T, T>> const &function) {
+   for (pair<T, T> row : function) {      
+      cout << row.first << " " << row.second << endl;
+   }
+   cout << endl;
+}
+
 #endif

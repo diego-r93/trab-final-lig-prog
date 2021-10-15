@@ -6,13 +6,15 @@
 // GNU Make 4.2.1
 // Sistema Operacional: Ubuntu 20.04.1 LTS
 
+#include <iostream>
 #include <algorithm>
 #include <fstream>
-#include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
 #include "consts.h"
+#include "functions.h"
 #include "pyClass.h"
 
 using namespace std;
@@ -26,7 +28,7 @@ int main() {
 
    string firstEntry, secondEntry;
 
-   CPyInstance CPyObject;
+   PyArray *matriz_1, *matriz_2, *resultado;
 
    do {
       displayMenu();
@@ -49,15 +51,25 @@ int main() {
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
             cout << ">>> ";
             cin >> firstEntry;
-            py_argv[1] = (char *)firstEntry.c_str();
+            matriz_1 = new PyArray(firstEntry);
+            py_argv[1] = (char *)matriz_1->getFilename().c_str();
+            cout << "Primeira Matriz:" << endl;
+            printVector(matriz_1->getMatriz());
 
             cout << "Digite o nome do arquivo da segunda matriz: " << endl;
             cout << ">>> ";
             cin.ignore();
             cin >> secondEntry;
-            py_argv[2] = (char *)secondEntry.c_str();
+            matriz_2 = new PyArray(secondEntry);
+            py_argv[2] = (char *)matriz_2->getFilename().c_str();
+            cout << "Segunda Matriz:" << endl;
+            printVector(matriz_2->getMatriz());
 
             runPyScriptArgs(py_argv[0], py_argc, py_argv);
+
+            resultado = new PyArray("result.txt");
+            cout << "Resultado da soma:" << endl;
+            printVector(resultado->getMatriz());
             break;
 
          case 2:
@@ -66,15 +78,25 @@ int main() {
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
             cout << ">>> ";
             cin >> firstEntry;
-            py_argv[1] = (char *)firstEntry.c_str();
+            matriz_1 = new PyArray(firstEntry);
+            py_argv[1] = (char *)matriz_1->getFilename().c_str();
+            cout << "Primeira Matriz:" << endl;
+            printVector(matriz_1->getMatriz());
 
             cout << "Digite o nome do arquivo da segunda matriz: " << endl;
             cout << ">>> ";
             cin.ignore();
             cin >> secondEntry;
-            py_argv[2] = (char *)secondEntry.c_str();
+            matriz_2 = new PyArray(secondEntry);
+            py_argv[2] = (char *)matriz_2->getFilename().c_str();
+            cout << "Segunda Matriz:" << endl;
+            printVector(matriz_2->getMatriz());
 
             runPyScriptArgs(py_argv[0], py_argc, py_argv);
+
+            resultado = new PyArray("result.txt");
+            cout << "Resultado da subtracao:" << endl;
+            printVector(resultado->getMatriz());
             break;
 
          case 3:
@@ -118,4 +140,15 @@ int main() {
    } while (option != 8);
 
    return OKAY;
+}
+
+template <class T>
+void printVector(vector<vector<T>> const &matrix) {
+   for (vector<T> row : matrix) {
+      for (T val : row) {
+         cout << val << " ";
+      }
+      cout << endl;
+   }
+   cout << endl;
 }

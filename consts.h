@@ -1,2 +1,2 @@
-#define ERROR_OPENING_FILE       5
+#define ERROR_OPENING_FILE       1
 #define OKAY                     0

@@ -1,9 +1,11 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
+#include "consts.h"
 #include "pyClass.h"
 
-using std::cout;
-using std::endl;
+using namespace std;
 
 CPyInstance::CPyInstance() {
    Py_Initialize();
@@ -13,34 +15,50 @@ CPyInstance::~CPyInstance() {
    Py_Finalize();
 }
 
-ostream &operator<<(ostream &output, PyArray &array) {
-   return output;
-}
-
 PyArray::PyArray(string fileName) {
    setFileName(fileName);
-}
-
-PyArray operator+(PyArray &firstArray, PyArray &secondArray) {
-   return firstArray;
+   setMatriz(fileName);
 }
 
 void PyArray::setFileName(string fileName) {
    this->fileName = fileName;
 }
 
-void displayMenu() {
-   cout << "\n\n------------------- MENU ------------------------" << endl;
-   cout << "1 - Somar duas Matrizes" << endl;
-   cout << "2 - Subtrair duas Matrizes" << endl;
-   cout << "3 - Multiplicar duas Matrizes" << endl;
-   cout << "4 - Inversa de uma Matriz Quadrada" << endl;
-   cout << "5 - Determinante de uma Matriz Quadrada" << endl;
-   cout << "6 - Transposta de uma Matriz" << endl;
-   cout << "7 - Gráfico de uma função" << endl;
-   cout << "8 - Sair" << endl;
-   cout << "-------------------------------------------------" << endl;
-   cout << ">>> ";
+string PyArray::getFilename() {
+   return fileName;
+}
+
+int PyArray::setMatriz(string fileName) {
+   fstream myFile;
+   string line, colname;
+
+   myFile.open(fileName);
+
+   if (!myFile.is_open()) {
+      cout << "O arquivo escolhido não existe." << endl;
+      return ERROR_OPENING_FILE;
+   }
+
+   if (myFile.good()) {
+      while (getline(myFile, line)) {
+         stringstream myStream(line);
+         vector<double> row;
+
+         while (getline(myStream, colname, ' ')) {
+            row.push_back(stod(colname));
+         }
+
+         matriz.push_back(row);
+         row = {};
+      }
+   }
+
+   myFile.close();
+   return OKAY;
+}
+
+vector<vector<double>> PyArray::getMatriz() {
+   return matriz;
 }
 
 void runPyScriptArgs(const char *file, int argc, char *argv[]) {   

@@ -2,11 +2,10 @@
 #define PYCLASS_H
 
 #include <Python.h>
+#include <vector>
 
-using std::ostream;
-using std::string;
+using namespace std;
 
-void displayMenu();
 void runPyScriptArgs(const char *, int, char *[]);
 
 class CPyInstance
@@ -18,16 +17,20 @@ class CPyInstance
 };
 
 class PyArray : public CPyInstance {
-   friend ostream &operator<<(ostream &, PyArray &);
-   friend PyArray operator+(PyArray &, PyArray &);
-   
    public:
       PyArray(string);
 
       void setFileName(string);
+      string getFilename();
+
+      vector<vector<double>> getMatriz();
 
    private:
       string fileName;
+
+      vector<vector<double>> matriz;
+
+      int setMatriz(string);
 };
 
 #endif

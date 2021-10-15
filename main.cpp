@@ -47,6 +47,7 @@ int main() {
 
       switch (option) {
          case 1:
+            remove("result.txt");
             py_argv[0] = (char *)"add.py";
 
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
@@ -74,6 +75,7 @@ int main() {
             break;
 
          case 2:
+            remove("result.txt");
             py_argv[0] = (char *)"sub.py";
 
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
@@ -101,6 +103,7 @@ int main() {
             break;
 
          case 3:
+            remove("result.txt");
             py_argv[0] = (char *)"mult.py";
 
             cout << "Digite o nome do arquivo da primeira matriz: " << endl;
@@ -128,6 +131,7 @@ int main() {
             break;
 
          case 4:
+            remove("result.txt");
             py_argv[0] = (char *)"inv.py";
 
             cout << "Digite o nome do arquivo da matriz: " << endl;
@@ -147,6 +151,7 @@ int main() {
             break;
 
          case 5:
+            remove("result.txt");
             py_argv[0] = (char *)"det.py";
 
             cout << "Digite o nome do arquivo da matriz: " << endl;
@@ -166,6 +171,7 @@ int main() {
             break;
 
          case 6:
+            remove("result.txt");
             py_argv[0] = (char *)"transp.py";
 
             cout << "Digite o nome do arquivo da matriz: " << endl;
